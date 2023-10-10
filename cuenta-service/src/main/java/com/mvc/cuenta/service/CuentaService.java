@@ -9,5 +9,6 @@ public interface CuentaService
     Cuenta getCuenta(Long cuentaId);
     List<Cuenta> getCuentasByTipo(Cuenta.TipoCuenta tipoCuenta);
     List<Cuenta> getCuentasByClienteId(Long clienteId);
-    // Agrega otros métodos personalizados según tus necesidades.
+    Cuenta updateCuenta(Long cuentaId, Cuenta nuevaCuenta);
+    boolean deleteCuenta(Long cuentaId);
 }

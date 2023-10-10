@@ -1,13 +1,14 @@
 package com.msvc.cliente.controllers;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,7 @@ public class ClienteController
 		Cliente cliente = clienteService.saveCliente(clienteRequest);
 		return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
 	}
-	@GetMapping("/clientId/{clientId}")
+	@GetMapping("/{clientId}")
 	public ResponseEntity<Cliente> obtenerCliente(@PathVariable Long clientId)
 	{
 		Cliente cliente = clienteService.getCliente(clientId);
@@ -67,6 +68,32 @@ public class ClienteController
 	    // Crear una respuesta ResponseEntity con la lista de clientes filtrados y devolverla
 	    return ResponseEntity.ok(clientesFiltrados);
 	}
+	@PutMapping("/{clientId}")
+    public ResponseEntity<Cliente> actualizarCliente(@PathVariable Long clientId, @RequestBody Cliente clienteRequest) 
+    {
+        Cliente cliente = clienteService.updateCliente(clientId, clienteRequest);
+        if (cliente != null) 
+        {
+            return ResponseEntity.ok(cliente);
+        } 
+        else 
+        {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-
+    // Endpoint para eliminar un cliente por su ID
+    @DeleteMapping("/{clientId}")
+    public ResponseEntity<Void> eliminarCliente(@PathVariable Long clientId) 
+    {
+        boolean eliminado = clienteService.deleteCliente(clientId);
+        if (eliminado) 
+        {
+            return ResponseEntity.noContent().build();
+        } 
+        else 
+        {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.mcvs.productocredito.controllers;
 import com.mcvs.productocredito.entity.ProductoCredito;
+import com.mcvs.productocredito.exception.ProductoCreditoNotFoundException;
 import com.mcvs.productocredito.service.ProductoCreditoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,5 +51,33 @@ public class ProductoCreditoController
     {
         List<ProductoCredito> productosCredito = productoCreditoService.getAllProductosCredito();
         return ResponseEntity.ok(productosCredito);
+    }
+    @PutMapping("/{productoCreditoId}")
+    public ResponseEntity<ProductoCredito> updateProductoCredito(
+            @PathVariable Long productoCreditoId,
+            @RequestBody ProductoCredito productoCredito) 
+    {
+        try 
+        {
+            ProductoCredito updatedProductoCredito = productoCreditoService.updateProductoCredito(productoCreditoId, productoCredito);
+            return ResponseEntity.ok(updatedProductoCredito);
+        } 
+        catch (ProductoCreditoNotFoundException e) 
+        {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @DeleteMapping("/{productoCreditoId}")
+    public ResponseEntity<Void> deleteProductoCredito(@PathVariable Long productoCreditoId) 
+    {
+        boolean deleted = productoCreditoService.deleteProductoCredito(productoCreditoId);
+        if (deleted) 
+        {
+            return ResponseEntity.noContent().build();
+        } 
+        else 
+        {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

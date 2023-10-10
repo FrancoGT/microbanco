@@ -23,7 +23,8 @@ import com.mvc.cuenta.service.CuentaService;
 
 // Importa las clases necesarias aquí
 
-public class CuentaControllerTest {
+public class CuentaControllerTest 
+{
 
     private MockMvc mockMvc;
 
@@ -34,13 +35,15 @@ public class CuentaControllerTest {
     private CuentaController cuentaController;
 
     @BeforeEach
-    public void setup() {
+    public void setup() 
+    {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(cuentaController).build();
     }
 
     @Test
-    public void testGetAllCuentas() throws Exception {
+    public void testGetAllCuentas() throws Exception 
+    {
         // Datos de ejemplo
         Cuenta cuenta1 = new Cuenta();
         cuenta1.setCuentaId(1L);

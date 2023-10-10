@@ -10,5 +10,6 @@ public interface ProductoCreditoService
     ProductoCredito getProductoCredito(Long productoCreditoId);
     List<ProductoCredito> getProductosCreditoByTipo(ProductoCredito.TipoCredito tipoCredito);
     List<ProductoCredito> getProductosCreditoByTasaInteres(BigDecimal tasaInteres);
-    // Agrega otros métodos personalizados según tus necesidades.
+    ProductoCredito updateProductoCredito(Long productoCreditoId, ProductoCredito productoCredito);
+    boolean deleteProductoCredito(Long productoCreditoId);
 }

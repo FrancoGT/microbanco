@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.mvc.tarjetacredito.controller.TarjetaCreditoController;
 import com.mvc.tarjetacredito.entity.TarjetaCredito;
-import com.mvc.tarjetacredito.entity.service.TarjetaCreditoService;
+import com.mvc.tarjetacredito.service.TarjetaCreditoService;
 
 // Importa las clases necesarias aquí
 

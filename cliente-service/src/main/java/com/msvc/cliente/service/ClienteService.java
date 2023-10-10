@@ -7,5 +7,6 @@ public interface ClienteService
 	Cliente saveCliente(Cliente cliente);
 	List<Cliente> getAllClientes();
 	Cliente getCliente(Long clientId);
-	List<Cliente> getAllClientesEmpresariales();
+	Cliente updateCliente(Long clientId, Cliente cliente);
+    boolean deleteCliente(Long clientId);
 }

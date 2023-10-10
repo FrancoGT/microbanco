@@ -9,5 +9,6 @@ public interface TitularFirmanteService
     TitularFirmante getTitularFirmante(Long titularFirmanteId);
     List<TitularFirmante> getTitularesFirmantesByTipo(TitularFirmante.TipoTitular tipoTitular);
     List<TitularFirmante> getTitularesFirmantesByCuentaId(Long cuentaId);
-    // Agrega otros métodos personalizados según tus necesidades.
+    TitularFirmante updateTitularFirmante(Long idTitularFirmante, TitularFirmante titularFirmante);
+    boolean deleteTitularFirmante(Long idTitularFirmante);
 }

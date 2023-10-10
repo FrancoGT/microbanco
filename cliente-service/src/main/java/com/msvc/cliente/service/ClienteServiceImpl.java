@@ -31,9 +31,36 @@ public class ClienteServiceImpl implements ClienteService
 	}
 
 	@Override
-	public List<Cliente> getAllClientesEmpresariales() 
+	public Cliente updateCliente(Long clientId, Cliente cliente) 
 	{
-		 return clienteRepository.findAllClientesEmpresariales();
+		Cliente clienteExistente = clienteRepository.findById(clientId)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con el ID: " + clientId));
+
+        // Actualiza los campos del cliente existente con los valores proporcionados en el cliente recibido
+        clienteExistente.setNombre(cliente.getNombre());
+        clienteExistente.setTipo(cliente.getTipo());
+        clienteExistente.setFechaNacimiento(cliente.getFechaNacimiento());
+        clienteExistente.setDireccion(cliente.getDireccion());
+        clienteExistente.setTelefono(cliente.getTelefono());
+        clienteExistente.setCorreoElectronico(cliente.getCorreoElectronico());
+
+        // Guarda y devuelve el cliente actualizado
+        return clienteRepository.save(clienteExistente);
 	}
+
+	@Override
+	public boolean deleteCliente(Long clientId) 
+	{
+		if (clienteRepository.existsById(clientId)) 
+		{
+            clienteRepository.deleteById(clientId);
+            return true; // Éxito en la eliminación
+        } 
+		else 
+		{
+            return false; // Cliente no encontrado
+        }
+	}
+
 	
 }
